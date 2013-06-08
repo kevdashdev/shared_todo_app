@@ -1,8 +1,8 @@
 <title>Shared Todo App</title>
 <h1>Shared Todo App</h1>
 <p>All your Todos goes here: </p>
-<ul>
-  <% @todo_array.each do |todo| %>
-  <li><%= todo %></li>
+<ol>
+  <% @todos.each do |todo| %>
+  <li><%= todo.todo_item.capitalize %></li>
   <% end %>
-</ul>
+</ol>

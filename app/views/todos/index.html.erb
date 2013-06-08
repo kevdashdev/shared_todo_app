@@ -5,7 +5,7 @@
       <h1>Shared Todo App</h1>
       <hr>
       <p>All your Todos goes here: </p>
-      <%= form_for @new_todo, url: { action: 'add' } do |f| %>
+      <%= form_for @new_todo, url: { action: 'add' }, html: {  class: 'form-inline' }  do |f| %>
         <%= f.text_field :todo_item, class: 'input-xlarge', placeholder: 'What do you plan to do?' %>
         <%= f.submit 'Add todo', class: 'btn btn-primary' %>
       <% end %>
@@ -25,11 +25,18 @@
       <% end %>
 
       <div class="well">
-        <ul>
-          <% @todos.each do |todo| %>
-          <li><%= todo.todo_item.capitalize %></li>
-          <% end %>
-        </ul>
+        <%= form_tag '/todos/complete', method: 'post' do %>
+          <ul style='list-style-type:none;'>
+            <% @todos.each do |todo| %>
+              <% if todo.completed %>
+                <li style='color:grey;'><%= check_box_tag 'todos_checkbox[]', todo.id, todo.completed %><strike><%= todo.todo_item %></strike></li>
+              <% else %>
+                <li><%= check_box_tag 'todos_checkbox[]', todo.id %> <%= todo.todo_item %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        <%= submit_tag 'Complete Todos', class: 'btn btn-success' %>
+        <% end %>
       </div>
       <%= link_to "Delete last todo", delete_path %>
     </div>

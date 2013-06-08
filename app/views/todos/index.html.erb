@@ -5,6 +5,18 @@
       <h1>Shared Todo App</h1>
       <hr>
       <p>All your Todos goes here: </p>
+      <%= form_tag '/todos/add', method: 'post', class: 'form-inline' do  %>
+        <%= text_field_tag :todo_text, nil, class: 'input-xlarge', placeholder: 'What do you plan to do?' %>
+        <%= submit_tag 'Add todo', class: 'btn btn-primary' %>
+      <% end %>
+
+      <% if flash[:error] %>
+        <div class="alert alert-error">
+          <button type='button' data-dismiss='alert' class="close">&cross;</button>
+          <strong><%= flash[:error] %></strong>
+        </div>
+      <% end %>
+
       <div class="well">
         <ul>
           <% @todos.each do |todo| %>

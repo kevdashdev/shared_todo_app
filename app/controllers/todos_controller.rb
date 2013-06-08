@@ -17,10 +17,12 @@ class TodosController < ApplicationController
   end
 
   def complete
-    params[:todos_checkbox].each do |check|
-      todo_id = check
-      t = Todo.find todo_id
-      t.update_attribute(:completed, true)
+    unless params[:todos_checkbox].nil?
+      params[:todos_checkbox].each do |check|
+        todo_id = check
+        t = Todo.find todo_id
+        t.update_attribute(:completed, ! t.completed)
+      end
     end
     redirect_to action: 'index'
   end

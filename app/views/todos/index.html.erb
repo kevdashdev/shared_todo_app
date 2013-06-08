@@ -31,7 +31,7 @@
               <% if todo.completed %>
                 <li style='color:grey;'><%= check_box_tag 'todos_checkbox[]', todo.id, todo.completed %><strike><%= todo.todo_item %></strike></li>
               <% else %>
-                <li><%= check_box_tag 'todos_checkbox[]', todo.id %> <%= todo.todo_item %></li>
+                <li><%= check_box_tag 'todos_checkbox[]', todo.id, todo.completed%> <%= todo.todo_item %></li>
               <% end %>
             <% end %>
           </ul>

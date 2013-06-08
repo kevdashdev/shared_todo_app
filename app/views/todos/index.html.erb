@@ -1,8 +1,18 @@
 <title>Shared Todo App</title>
-<h1>Shared Todo App</h1>
-<p>All your Todos goes here: </p>
-<ol>
-  <% @todos.each do |todo| %>
-  <li><%= todo.todo_item.capitalize %></li>
-  <% end %>
-</ol>
+<div class="container">
+  <div class="row">
+    <div class="span5">
+      <h1>Shared Todo App</h1>
+      <hr>
+      <p>All your Todos goes here: </p>
+      <div class="well">
+        <ul>
+          <% @todos.each do |todo| %>
+          <li><%= todo.todo_item.capitalize %></li>
+          <% end %>
+        </ul>
+      </div>
+      <%= link_to "Delete last todo", delete_path %>
+    </div>
+  </div>
+</div>
